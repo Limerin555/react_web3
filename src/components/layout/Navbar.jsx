@@ -9,7 +9,9 @@ const Navbar = () => {
   return (
     <header id="navbar" className="mb-auto">
       <div>
-        <h3 className="float-md-start mb-0">Cover</h3>
+        <Link className="navbar-brand float-md-start mb-0" to="/">
+          <h3>Pew 3x</h3>
+        </Link>
         <nav className="nav nav-masthead justify-content-center float-md-end">
           <Link className="nav-link active" to="/">Home</Link>
           <Link className="nav-link" to="/features">Features</Link>

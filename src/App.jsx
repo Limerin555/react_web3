@@ -6,6 +6,7 @@ import Layout from "@components/Layout";
 import Home from "@components/Home";
 import Features from "@components/Features";
 import Contact from "@components/Contact";
+import PageNotFound from "@components/PageNotFound";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="features" element={<Features />} />
             <Route path="contact" element={<Contact />} />
-            {/* <Route path="*" element={<NoPage />} /> */}
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
