@@ -11,7 +11,7 @@ const Home = () => {
       <main className="px-3">
         {!context.authenticated ? (
           <>
-            <h1>Connect your wallet</h1>
+            <h1>Bienvenue</h1>
             
             {!context.ethWallet ? (
               <p className="lead">
@@ -24,7 +24,7 @@ const Home = () => {
                 </p>
 
                 {context.connectionErr !== null && (
-                  <p className="lead error">
+                  <p className="lead error-text">
                     Error: {context.connectionErr}
                   </p>
                 )}
@@ -34,16 +34,11 @@ const Home = () => {
           </>
         ) : (
           <>
-            <h1>Welcome, User!</h1>
-            <p className="lead">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque ex sequi corporis recusandae iure, alias ipsa, doloribus esse modi ipsam amet reprehenderit impedit labore? Qui modi perferendis aut ea voluptates.
-            </p>
+            <h1>Welcome back to Lorem Ipsum</h1>
+            <p className="lead mb-1 mt-3">You're connected to:</p>
+            <p>{context.userAcc}</p>
           </>
         )}
-
-        {/* <p className="lead">
-          <a href="#" className="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-        </p> */}
       </main>
     </>
   )

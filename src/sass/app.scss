@@ -31,6 +31,20 @@ body {
   user-select: none;
 }
 
+.nav {
+  .nav-link {
+    color: ghostwhite;
+
+    &.active {
+      color: rgb(229, 149, 19);
+    }
+  }
+}
+
+.error-text {
+  color: red;
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;

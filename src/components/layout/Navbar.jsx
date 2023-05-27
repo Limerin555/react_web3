@@ -1,5 +1,4 @@
-// import React, { useEffect, useState } from 'react';
-// import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
 
@@ -10,9 +9,7 @@ import { AuthContext } from "@src/App";
 import mmSvg from "@assets/svg/metamask-fox.svg";
 
 const Navbar = () => {
-  // const history = useHistory();
-  // const location = useLocation();
-
+  const location = useLocation();
   const context = useContext(AuthContext);
 
   return (
@@ -35,16 +32,18 @@ const Navbar = () => {
           ) : (
             <>
               <nav className="nav nav-masthead justify-content-center float-md-end">
-                {/* <Link className="nav-link active" to="/">Home</Link> */}
-                <Link className="nav-link" to="/features">
-                  Profile
-                </Link>
-                <button 
-                  className="nav-link btn logout-btn" 
-                  onClick={ context.mmLogout }
+                <Link 
+                  className={`nav-link ${location.pathname === "/" ? "active" : ""}`} 
+                  to="/"
                 >
-                  Logout
-                </button>
+                  Home
+                </Link>
+                <Link 
+                  className={`nav-link ${location.pathname === "/smart-contract" ? "active" : ""}`} 
+                  to="/smart-contract"
+                >
+                  Smart Contract
+                </Link>
               </nav>
             </>
           )}
