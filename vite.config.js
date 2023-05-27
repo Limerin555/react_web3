@@ -12,7 +12,9 @@ export default defineConfig((mode) => {
     },
     resolve: {
       alias: {
+        '@src': fileURLToPath(new URL('./src', import.meta.url)),
         '@sass': fileURLToPath(new URL('./src/sass', import.meta.url)),
+        '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
         '@components': fileURLToPath(new URL('./src/components', import.meta.url))
       }
     }
