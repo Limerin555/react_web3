@@ -11,10 +11,26 @@ const Home = () => {
       <main className="px-3">
         {!context.authenticated ? (
           <>
-            <h1>Login Required</h1>
-            <p className="lead">
-              Please login with your Metamask wallet.
-            </p>
+            <h1>Connect your wallet</h1>
+            
+            {!context.ethWallet ? (
+              <p className="lead">
+                Please install MetaMask wallet to continue.
+              </p>
+            ) : (
+              <>
+                <p className="lead">
+                  Please connect your MetaMask wallet to continue.
+                </p>
+
+                {context.connectionErr !== null && (
+                  <p className="lead error">
+                    Error: {context.connectionErr}
+                  </p>
+                )}
+              </>
+            )}
+
           </>
         ) : (
           <>

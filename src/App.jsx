@@ -1,5 +1,6 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Web3 from 'web3';
 
 // Components
 import Layout from "@components/Layout";
@@ -11,21 +12,51 @@ import PageNotFound from "@components/PageNotFound";
 export const AuthContext = createContext(false);
 
 function App() {
+  // const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
+  // web3.eth.defaultChain = "mumbai";
+
   const [loggedIn, setLoggedIn] = useState(false);
+  const [ethWallet, setEthWallet] = useState(null);
+  const [connectError, setConnectError] = useState(null);
   
   const contextVal = {
     authenticated: loggedIn,
-    mmLogin: mmLogin,
+    ethWallet: ethWallet,
+    connectionErr: connectError,
+    mmLogin: connectWallet,
     mmLogout: mmLogout
   };
-
-  async function mmLogin() {
-    await setLoggedIn(true);
-  }
 
   async function mmLogout() {
     await setLoggedIn(false);
   }
+
+  async function checkWalletConnection() {
+    const ethereum = window;
+    await setEthWallet((!ethereum ? false : true));
+  }
+
+  async function connectWallet() {
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      window.web3 = new Web3(window.ethereum);
+      await setLoggedIn(true);
+
+      if (connectError !== null) { setConnectError(null); }
+
+      console.log(window.web3);
+
+      return;
+    } catch (error) {
+      setConnectError(error.message);
+      console.error(error);
+      return;
+    }
+  }
+
+  useEffect(() => { 
+    if (ethWallet === null) { checkWalletConnection(); }
+  }, [ethWallet]);
 
   return (
     <>

@@ -20,7 +20,7 @@ const Navbar = () => {
       <header id="navbar" className="mb-auto">
         <div>
           <Link className="navbar-brand float-md-start mb-0" to="/">
-            <h3>Pew</h3>
+            <h3>Lorem Ipsum</h3>
           </Link>
 
           {!context.authenticated ? (
@@ -28,7 +28,7 @@ const Navbar = () => {
               <nav className="nav nav-masthead justify-content-center float-md-end">
                 <button className="btn btn-outline-secondary login-btn" onClick={ context.mmLogin }>
                   <img className="top arcade-frame" src={ mmSvg } alt="" height="25px" width="25px" />
-                  <span> Login</span>
+                  <span> Connect Wallet</span>
                 </button>
               </nav>
             </>
