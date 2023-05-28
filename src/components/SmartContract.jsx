@@ -30,7 +30,7 @@ const SmartContract = () => {
       await contract.methods.incDefAdminCount().send({ from: context.userAcc });
       await getAdminCount();
     } catch(error) {
-      setError(error);
+      setError(msg);
       console.error(error);
       return;
     }
@@ -42,7 +42,7 @@ const SmartContract = () => {
       await contract.methods.incSecAdminCount().send({ from: context.userAcc });
       await getSecAdminCount();
     } catch(error) {
-      setError(error);
+      setError(msg);
       console.error(error);
       return;
     }
@@ -54,7 +54,7 @@ const SmartContract = () => {
       await contract.methods.mintNft().send({ from: context.userAcc });
       await getMintsLeft();
     } catch(error) {
-      setError(error);
+      setError(msg);
       console.error(error);
       return;
     }

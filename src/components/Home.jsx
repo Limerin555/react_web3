@@ -22,13 +22,13 @@ const Home = () => {
                 <p className="lead">
                   Please connect your MetaMask wallet to continue.
                 </p>
-
-                {context.connectionErr !== null && (
-                  <p className="lead error-text">
-                    Error: {context.connectionErr}
-                  </p>
-                )}
               </>
+            )}
+
+            {context.connectionErr !== null && (
+              <p className="lead error-text">
+                Error: {context.connectionErr}
+              </p>
             )}
 
           </>

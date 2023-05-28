@@ -23,33 +23,36 @@ function App() {
     ethWallet: ethWallet,
     userAcc: userAcc,
     connectionErr: connectError,
-    mmLogin: connectWallet,
-    mmLogout: mmLogout
+    mmLogin: connectWallet
   };
 
-  async function mmLogout() {
-    await setLoggedIn(false);
-  }
-
   async function checkWalletConnection() {
-    const ethereum = window;
+    const ethereum = window.ethereum;
     await setEthWallet((!ethereum ? false : true));
 
-    const userAcc = await web3.eth.getAccounts();
-    
-    if(userAcc.length > 0) {
-      await setUserAcc(userAcc[0]);
-      await setLoggedIn(true);
-    } else {
-      if (loggedIn) { 
-        await setUserAcc(null);
-        await setLoggedIn(false);
+    if (ethereum) {
+      const userAcc = await web3.eth.getAccounts();
+      
+      if(userAcc.length > 0) {
+        await setUserAcc(userAcc[0]);
+        await setLoggedIn(true);
+      } else {
+        if (loggedIn) { 
+          await setUserAcc(null);
+          await setLoggedIn(false);
+        }
       }
     }
   }
 
   async function connectWallet() {
     try {
+      if (!ethWallet) {
+        const errMsg = "Please install MetaMask first";
+        setConnectError(errMsg);
+        return;
+      }
+
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       await setLoggedIn(true);
 
