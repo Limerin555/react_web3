@@ -26,10 +26,12 @@ function App() {
     mmLogin: connectWallet
   };
 
+  // Check if Metamask is installed
   async function checkWalletConnection() {
     const ethereum = window.ethereum;
     await setEthWallet((!ethereum ? false : true));
 
+    // If installed, get user's accounts.
     if (ethereum) {
       const userAcc = await web3.eth.getAccounts();
       
@@ -45,8 +47,10 @@ function App() {
     }
   }
 
+  // Connect to MetaMask wallet
   async function connectWallet() {
     try {
+      // If MetaMask is not installed, throw error.
       if (!ethWallet) {
         const errMsg = "Please install MetaMask first";
         setConnectError(errMsg);
@@ -56,8 +60,10 @@ function App() {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       await setLoggedIn(true);
 
+      // Reset error
       if (connectError !== null) { setConnectError(null); }
 
+      window.location.reload(false);
       return;
     } catch (error) {
       setConnectError(error.message);
