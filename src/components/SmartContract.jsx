@@ -26,6 +26,9 @@ const SmartContract = () => {
   // WRITE FUNCTIONS
   // Call incDefAdminCount write function in the smart contract
   async function incrAdminCount() {
+    // Reset error message
+    setError(null);
+
     try {
       await contract.methods.incDefAdminCount().send({ from: context.userAcc });
       await getAdminCount();
@@ -38,6 +41,9 @@ const SmartContract = () => {
 
   // Call incSecAdminCount write function in the smart contract
   async function incrSecAdminCount() {
+    // Reset error message
+    setError(null);
+
     try {
       await contract.methods.incSecAdminCount().send({ from: context.userAcc });
       await getSecAdminCount();
@@ -50,6 +56,9 @@ const SmartContract = () => {
 
   // Call mintNft write function in the smart contract
   async function decMintsLeft() {
+    // Reset error message
+    setError(null);
+
     try {
       await contract.methods.mintNft().send({ from: context.userAcc });
       await getMintsLeft();
@@ -63,6 +72,9 @@ const SmartContract = () => {
   // READ FUNCTIONS
   // Call getDefAdminCount read function in the smart contract
   async function getAdminCount() {
+    // Reset error message
+    setError(null);
+
     try {
       const count = await contract.methods.getDefAdminCount().call();
       setAdminCount(count);
@@ -76,6 +88,9 @@ const SmartContract = () => {
 
   // Call getSecAdminCount read function in the smart contract
   async function getSecAdminCount() {
+    // Reset error message
+    setError(null);
+
     try {
       const count = await contract.methods.getSecAdminCount().call();
       setSecAdminCount(count);
@@ -89,6 +104,9 @@ const SmartContract = () => {
 
   // Call getMintsLeft read function in the smart contract
   async function getMintsLeft() {
+    // Reset error message
+    setError(null);
+
     try {
       const count = await contract.methods.getMintsLeft().call();
       setMintsLeft(count);
